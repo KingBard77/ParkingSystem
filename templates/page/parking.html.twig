@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parking{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        {% for parkingSpot in parkingSpots %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 my-3 mt-3 border-grey p-3">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3">Slot Number: {{ parkingSpot.name }}</h3>
+                        {% if parkingSpot.status == 'Available' %}
+                            <button class="btn btn-success mb-3"><strong>Available</strong></button>
+                        {% else %}
+                            <button class="btn btn-warning mb-3"><strong>Unavailable</strong></button>
+                        {% endif %}
+                        <h5 class="card-text mb-3">Type: {{ parkingSpot.type }}</h5>
+                        {# {% if parkingSpot.zone == 'Standard' %}
+                            <div class="alert alert-primary" role="alert">Standard<div>
+                        {% elseif parkingSpot.zone == 'Premium' %}
+                            <div class="alert alert-warning" role="alert">Premium<div>
+                        {% else %}
+                            <div class="alert alert-danger" role="alert">VIP<div>
+                        {% endif %} #}
+                        <h5 class="card-text mb-3"><strong>Zone: {{ parkingSpot.zone }}</strong></h5>
+                        <h5 class="card-text mb-3">Rate: RM {{ parkingSpot.rate }} / monthly</h5>
+                        <h6 class="card-text mb-3">Latest Update {{ parkingSpot.updateAt|date('Y-m-d H:i:s') }}</h6>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

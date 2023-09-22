@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParkingSpot{% endblock %}
+
+{% block body %}
+
+	<section id="contact" class="contact">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-header">
+				<h2>ParkingSpot</h2>
+				<p>Parking Spot Show</p>
+			</div>
+
+            <div class="row gx-lg-0 gy-4">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ app.request.get('index') ?: parking_spot.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Slot No</th>
+                                <td>{{ parking_spot.Name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{{ parking_spot.Status }}</td>
+                            </tr>
+                            <tr>
+                                <th>Type</th>
+                                <td>{{ parking_spot.Type }}</td>
+                            </tr>
+                            <tr>
+                                <th>Zone</th>
+                                <td>{{ parking_spot.Zone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Rate</th>
+                                <td>Rm {{ parking_spot.Rate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Created At</th>
+                                <td>{{ parking_spot.CreateAt ? parking_spot.CreateAt|date('Y-m-d H:i:s') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Updated At</th>
+                                <td>{{ parking_spot.UpdateAt ? parking_spot.UpdateAt|date('Y-m-d H:i:s') : '' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+			</div>
+
+            <!-- Form Group for Buttons -->
+            <div class="form-group row">
+                <div class="col-md-12 d-flex">
+                    <div class="ms-auto">
+                        <a href="{{ path('app_parking_spot_index') }}" class="btn btn-secondary me-2">Back to List</a>
+                        <a href="{{ path('app_parking_spot_edit', {'id': parking_spot.id}) }}" class="btn btn-primary me-2">Edit</a>
+                        <div class="d-inline-block ">
+                            {{ include('parking_spot/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# {{ include('parking_spot/_delete_form.html.twig') }} #}
+{% endblock %}

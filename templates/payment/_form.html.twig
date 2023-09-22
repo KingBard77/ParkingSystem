@@ -1,0 +1,210 @@
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+<div class="container">
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.owner, 'Please input your Owner') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.owner, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.owner) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.vehicle, 'Please input your Vehicle') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.vehicle, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.vehicle) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.paymentMethod, 'Please input your Payment Method') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.paymentMethod, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.paymentMethod) }}
+        </div>
+    </div>
+    
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.status, 'Please input your Status') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.status, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.status) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.monthYear, 'Please input your Month Year') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.monthYear, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.monthYear) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right control-label">
+            {{ form_label(form.parkingSpot, 'Please select your Parking Spot') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.parkingSpot, {'attr': {'class': 'form-control', 'id': 'app_payment_parkingSpot'}}) }}
+            {{ form_errors(form.parkingSpot) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right control-label">
+            <label for="parkingSpotRate">Rate</label>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">RM</span>
+                </div>
+                <input type="text" id="parkingSpotRate" class="form-control" placeholder="Rate will be displayed here" aria-label="Amount (to the nearest dollar)" readonly/>
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right control-label">
+            {{ form_label(form.amount, 'Please input your Amount') }}
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">RM</span>
+                </div>
+                <input type="text" id="amountField" class="form-control" placeholder="Rate will be displayed here" aria-label="Amount (to the nearest dollar)" readonly/>
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+            <!-- Using a hidden form_widget for Symfony form, ID is different -->
+            {{ form_widget(form.amount, {'attr': {'class': 'form-control', 'id': 'hiddenAmountField', 'aria-label': 'Amount (to the nearest dollar)', 'style': 'display:none;' }}) }}
+            {{ form_errors(form.amount) }}
+        </div>
+    </div>
+    
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            <!-- Empty space -->
+        </div>
+        <div class="col-md-6">
+            <!-- Buttons -->
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            <a href="{{ path('app_payment_index') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        console.log("Script loaded");
+
+        $('#payment_parkingSpot').change(function() {
+            console.log('Change event triggered');
+
+            var selectedOption = $('#payment_parkingSpot option:selected');
+            var parkingSpotId = selectedOption.data('id');
+            console.log('Selected parkingSpotId:', parkingSpotId);
+
+            if (!parkingSpotId) {
+                console.log('Parking spot ID is empty or undefined.');
+                return;
+            }
+
+            $.ajax({
+                url: 'http://127.0.0.1:8000/payment/get-rate/' + parkingSpotId,
+                success: function(data) {
+                    console.log("Success:", data);
+                    if (data && data.rate) {
+                        var rate = parseFloat(data.rate); // Make sure the rate is a float
+                        console.log('Fetched rate:', rate); // Debugging
+                        $('#parkingSpotRate').val(rate);
+                        // Calculate Amount based on rate * 30
+                        var calculatedAmount = rate * 30;
+                        console.log('Calculated Amount:', calculatedAmount); // Debugging
+                        // Update the Amount field
+                        $('#amountField').val(calculatedAmount);
+                        $('#hiddenAmountField').val(calculatedAmount); // Update the hidden Symfony form field
+                    } else {
+                        console.log("Rate not found in response data.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error:", xhr, status, error);
+                }
+            });
+        });
+
+        // Initialize the form fields based on the initial selected parking spot
+        function initializeFields() {
+            var selectedOption = $('#payment_parkingSpot option:selected');
+            var parkingSpotId = selectedOption.data('id');
+
+            // Call your function to fetch the rate and set the amount based on the initial parkingSpotId
+            if (parkingSpotId) {
+                fetchRateAndSetAmount(parkingSpotId);
+            }
+        }
+
+        function fetchRateAndSetAmount(parkingSpotId) {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/payment/get-rate/' + parkingSpotId,
+                success: function(data) {
+                    if (data && data.rate) {
+                        var rate = parseFloat(data.rate);
+                        $('#parkingSpotRate').val(rate);
+                        var calculatedAmount = rate * 30;
+                        $('#amountField').val(calculatedAmount);
+                        $('#hiddenAmountField').val(calculatedAmount); 
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error:", xhr, status, error);
+                }
+            });
+        }
+
+        // Call initializeFields() to set initial values when the page loads
+        initializeFields();
+
+        // Your existing change listener code
+        $('#payment_parkingSpot').change(function() {
+            var selectedOption = $('#payment_parkingSpot option:selected');
+            var parkingSpotId = selectedOption.data('id');
+            if (parkingSpotId) {
+                fetchRateAndSetAmount(parkingSpotId);
+            }
+        });
+
+    });
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

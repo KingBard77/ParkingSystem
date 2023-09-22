@@ -1,0 +1,101 @@
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+<div class="container">
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.Name, 'Please input your Slot Number') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.Name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Name) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.Status, 'Please input your Status') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.Status, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Status) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.Type, 'Please input your Type') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.Type, {'id': 'parking_spot_Type', 'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Type) }}
+        </div>
+    </div>
+    
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.Zone, 'Please input your Zone') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.Zone, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Zone) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right control-label">
+            {{ form_label(form.Rate, 'Please input your Rate') }}
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">RM</span>
+                </div>
+                {{ form_widget(form.Rate, {'id': 'parking_spot_Rate', 'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.Rate) }}
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            <div class="col-md-4 text-md-right col-form-label">
+        </div>
+            <!-- Empty smdc6-->
+        </div>
+        <div class="col-md-6">
+            <!-- Buttons -->
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            <a href="{{ path('app_parking_spot_index') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            const typeField = document.getElementById('parking_spot_Type');
+            const rateField = document.getElementById('parking_spot_Rate');
+
+            typeField.addEventListener('change', function() {
+                let selectedType = this.value;
+
+                switch(selectedType) {
+                    case 'Basic':
+                        rateField.value = 100.0;
+                        break;
+                    case 'Standard':
+                        rateField.value = 130.0;
+                        break;
+                    default:
+                        rateField.value = 160.0;
+                }
+            });
+        });
+    </script>
+{% endblock %}
+

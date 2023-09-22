@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ParkingSlot{% endblock %}
+
+{% block body %}
+
+	<section id="contact" class="contact">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-header">
+				<h2>Create new ParkingSlot</h2>
+				<p>ParkingSlot New</p>
+			</div>
+
+            <div class="row gx-lg-0 gy-4">
+                {{ include('parking_spot/_form.html.twig') }}
+			</div>
+        </div>
+    </section>
+
+    <a href="{{ path('app_parking_spot_index') }}">back to list</a>
+{% endblock %}

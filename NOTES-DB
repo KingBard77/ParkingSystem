@@ -1,0 +1,29 @@
+# Notes
+-h 127.0.0.1: Connect to the host at IP address 127.0.0.1
+-U app: Connect using the user app
+-d app: Connect to the database named app
+
+# Connecting to PostgreSQL
+psql -h 127.0.0.1 -U app -d app
+
+# Listing tables
+\dt
+
+# Describing a table
+\d+ table_name
+
+# Querying Data
+SELECT * FROM table_name LIMIT 10
+
+# Existing PostgreSQL
+\q
+
+# Connecting to PostqreSQL
+psql -h 127.0.0.1 -U app
+
+# Listing all database
+\l or \list
+
+# Existing PostgreSQL
+\q
+

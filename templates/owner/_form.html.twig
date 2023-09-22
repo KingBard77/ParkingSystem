@@ -1,0 +1,55 @@
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+<div class="container">
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.EmployeeID, 'Please input your Employee ID') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.EmployeeID, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.EmployeeID) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.OwnerName, 'Please input your Name') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.OwnerName, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.OwnerName) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.ContactNumber, 'Please input your Phone Number') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.ContactNumber, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.ContactNumber) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.Email, 'Please input your Email') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.Email, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Email) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            <!-- Empty space -->
+        </div>
+        <div class="col-md-6">
+            <!-- Buttons -->
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            <a href="{{ path('app_owner_index') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

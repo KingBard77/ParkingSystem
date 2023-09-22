@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ParkingSpot{% endblock %}
+
+{% block body %}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Edit ParkingSpot</h2>
+            <p>Parking Spot Edit</p>
+        </div>
+        
+        <div class="row gx-lg-0 gy-4">
+            <div class="col-md-12">
+                {{ include('parking_spot/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+        </div>
+        
+        {# <div class="row">
+            <div class="col-md-12 float-end ms-auto">
+                {{ include('parking_spot/_delete_form.html.twig') }}
+            </div>
+        </div> #}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vehicle{% endblock %}
+
+{% block body %}
+
+<section id="contact" class="contact">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-header">
+				<h2>New Vehicle</h2>
+				<p>New Vehicle</p>
+			</div>
+
+            <div class="row gx-lg-0 gy-4">
+                {{ include('vehicle/_form.html.twig') }}
+			</div>
+        </div>
+    </section>
+
+    <a href="{{ path('app_vehicle_index') }}">back to list</a>
+{% endblock %}

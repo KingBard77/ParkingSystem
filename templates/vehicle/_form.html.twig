@@ -1,0 +1,57 @@
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+<div class="container">
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.licensePlate, 'Please input your License Plate') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.licensePlate, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.licensePlate) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.brand, 'Please input your Vehicle Brand') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.brand, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.brand) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.owner, 'Please input your Name') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.owner, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.owner) }}
+        </div>
+    </div>
+
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            {{ form_label(form.parkingSpot, 'Please choose your Parking Slot') }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(form.parkingSpot, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.parkingSpot) }}
+        </div>
+    </div>
+
+    
+    <div class="row form-group mb-4">
+        <div class="col-md-4 text-md-right col-form-label">
+            <!-- Empty space -->
+        </div>
+        <div class="col-md-6">
+            <!-- Buttons -->
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            <a href="{{ path('app_vehicle_index') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}

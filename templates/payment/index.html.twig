@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment index{% endblock %}
+
+{% block body %}
+
+	<section id="contact" class="contact">
+		<div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+            <h2>Payment index</h2>
+            <p>Payment List</p>
+        </div>
+
+
+            <div class="row gx-lg-0 gy-4">
+                <!-- Added 'table-responsive' for a responsive table -->
+                <div class="table-responsive">
+                    <!-- Added 'table-striped' and 'table-hover' along with 'table' class -->
+                    <table class="table table-striped table-hover text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Payment Date</th>
+                                <th>Status</th>
+                                <th>Month Year</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for payment in payments %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ payment.amount }}</td>
+                                <td>{{ payment.paymentMethod }}</td>
+                                <td>{{ payment.paymentDate ? payment.paymentDate|date('Y-m-d H:i:s') : '' }}</td>
+                                {% if payment.status == 'Pending' %}
+                                    <td><button class="btn btn-warning">Pending</button></td>
+                                {% elseif payment.status == 'Successful' %}
+                                    <td><button class="btn btn-success">Successful</button></td>
+                                {% else %}
+                                    <td><button class="btn btn-danger">Overdue</button></td>
+                                {% endif %}
+                                <td>{{ payment.monthYear }}</td>
+                                <td>
+                                    {# <a href="{{ path('app_payment_show', {'id': payment.id}) }}" class="btn btn-info">Show</a> #}
+                                    <a href="{{ path('app_payment_show', {'id': payment.id, 'index': loop.index}) }}" class="btn btn-info" style="margin-right: 5px;">Show</a>
+                                    <a href="{{ path('app_payment_edit', {'id': payment.id}) }}" class="btn btn-warning" style="margin-right: 5px;">Edit</a>
+                                    <form method="post" action="{{ path('app_payment_delete', {'id': payment.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ payment.id) }}">
+                                        <button class="btn btn-danger">Delete</button>
+                                        </form>
+
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-left mt-3">
+                    <a href="{{ path('app_payment_new') }}" class="btn btn-primary">Create new</a>
+                </div>
+                {# <a href="{{ path('app_payment_new') }}" class="btn btn-primary mt-3">Create new</a> #}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    $(document).ready(function () {
+        $('.table').DataTable();
+    });
+    </script>
+{% endblock %}

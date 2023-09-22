@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Payment{% endblock %}
+
+{% block body %}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Edit Payment</h2>
+            <p>Payment Edit</p>
+        </div>
+                
+        <div class="row gx-lg-0 gy-4">
+            <div class="col-md-12">
+                {{ include('payment/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+        </div>
+
+        {# <div class="row">
+            <div class="col-md-12 float-end ms-auto">
+                {{ include('payment/_delete_form.html.twig') }}
+            </div>
+        </div> #}
+    </div>
+</section>
+
+{% endblock %}

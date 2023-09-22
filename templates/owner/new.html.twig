@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Owner{% endblock %}
+
+{% block body %}
+    <section id="contact" class="contact">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-header">
+				<h2>New Owner</h2>
+				<p>New Owner</p>
+			</div>
+
+            <div class="row gx-lg-0 gy-4">
+                {{ include('owner/_form.html.twig') }}
+			</div>
+        </div>
+    </section>
+
+    <a href="{{ path('app_owner_index') }}">back to list</a>
+{% endblock %}

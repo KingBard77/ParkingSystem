@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About
+{% endblock %}
+
+{% block body %}
+	<!-- ======= About Us Section ======= -->
+	<section id="about" class="about">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-header">
+				<h2>About Us</h2>
+				<p>Averis Parking system offer convenience for the employee in the building. Employees can secure a parking spot on a monthly basis, eliminating the need to search for parking each day. Monthly parking provide predictable monthly expenses for employees. This predictability is especially valuable for businesses and commuters who want to budget their parking expenses effectively.</p>
+			</div>
+
+			<div class="row gy-4">
+				<div class="col-lg-6">
+					<h3>Our Secret</h3>
+					<img src="{{ asset('img/about-2.jpg')}}" class="img-fluid rounded-4 mb-4" alt="">
+					<p align="justify">What's the secret to our top-notch parking experience? It's our Smart-Space technology. While most parking services allocate spaces on a first-come, first-serve basis, our system dynamically assigns and adjusts parking spaces based on vehicle size, peak hours, and special events.</p>
+					
+					<p align="justify">This ensures optimal use of space and offers a streamlined parking experience for our customers. That's right, your vehicle gets a custom parking spot—every time. It's the future of parking, available to you today.</p>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="content ps-0 ps-lg-5">
+						<p class="fst-italic">
+						"Monthly parking plans often come at a discounted rate compared to daily or hourly parking fees. Users can save money by committing to a monthly plan, making it a cost-effective option for frequent parkers."
+						</p>
+						<ul>
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								<strong>Convenience : </strong>
+								Averis parking systems make it convenient for users to secure a parking space for an extended period, eliminating the need to find parking on a daily basis. This is especially valuable in busy urban areas where parking can be scarce
+							</li>
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								<strong>Cost Savings : </strong>
+								Monthly parking plans often come at a discounted rate compared to daily or hourly parking fees. Users can save money by committing to a monthly plan, making it a cost-effective option for frequent parkers.
+						</li>
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								<strong>Predictability : </strong>
+								Monthly parking provides users with predictable monthly expenses, helping them budget effectively. This predictability is particularly useful for businesses and commuters who want to manage their parking costs.
+						</li>
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								<strong>Reserved Parking : </strong>
+								Monthly parking plans typically include a reserved parking space. This means users have a designated spot available to them at all times, eliminating the uncertainty of finding parking during peak hours.
+							</li>
+						</ul>
+						<p>
+							<a href="#">Find Out More</a>
+						</p>
+						<div class="position-relative mt-4">
+							<img src="{{ asset('img/about.png')}}" class="img-fluid rounded-4" alt="">
+								
+							{# <a href="single-post.html" class="img-fluid rounded-4" style="background-image: url('{{ asset('img/about.png') }}');"> #}
+							{# <img src="{{ asset('img/page/post-landscape-2.jpg')}}" alt="" class="img-fluid"> #}
+
+							<a href="https://www.youtube.com/watch?v=M1TPlF9X5mI&ab_channel=Averis" class="glightbox play-btn"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- End About Us Section -->
+{% endblock %}
