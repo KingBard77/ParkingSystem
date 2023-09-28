@@ -20,6 +20,6 @@
 ###< symfony/phpunit-bridge ###
 
 ### backup-file ###
-.CODES-BAK
-.NOTES
-.NOTES-DB
+CODES-BAK
+NOTES
+NOTES-DB
