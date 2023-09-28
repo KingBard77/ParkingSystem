@@ -31,8 +31,8 @@
           <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="{{ path('app_parking_spot_index') }}">Parking Slot</a></li>
-              <li><a href="{{ path('app_vehicle_index') }}">Vehicle</a></li>
               <li><a href="{{ path('app_owner_index') }}">Owner</a></li>
+              <li><a href="{{ path('app_vehicle_index') }}">Vehicle</a></li>
               <li><a href="{{ path('app_payment_index') }}">Payment</a></li>
             </ul>
           </li>
@@ -72,28 +72,28 @@
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-easel"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Parking Slot</a></h4>
+              <h4 class="title"><a href={{ path('app_parking_spot_index') }} class="stretched-link">Parking Slot</a></h4>
             </div>
           </div><!--End Icon Box -->
 
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-gem"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Vehicle</a></h4>
+              <h4 class="title"><a href={{ path('app_vehicle_index') }} class="stretched-link">Vehicle</a></h4>
             </div>
           </div><!--End Icon Box -->
 
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-geo-alt"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Owner</a></h4>
+              <h4 class="title"><a href={{ path('app_owner_index') }} class="stretched-link">Owner</a></h4>
             </div>
           </div><!--End Icon Box -->
 
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-command"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Payment</a></h4>
+              <h4 class="title"><a href={{ path('app_payment_index') }} class="stretched-link">Payment</a></h4>
             </div>
           </div><!--End Icon Box -->
 

@@ -139,7 +139,8 @@
                         console.log('Fetched rate:', rate); // Debugging
                         $('#parkingSpotRate').val(rate);
                         // Calculate Amount based on rate * 30
-                        var calculatedAmount = rate * 30;
+                        // var calculatedAmount = rate * 30;
+                        var calculatedAmount = rate;
                         console.log('Calculated Amount:', calculatedAmount); // Debugging
                         // Update the Amount field
                         $('#amountField').val(calculatedAmount);
@@ -172,7 +173,7 @@
                     if (data && data.rate) {
                         var rate = parseFloat(data.rate);
                         $('#parkingSpotRate').val(rate);
-                        var calculatedAmount = rate * 30;
+                        var calculatedAmount = rate;
                         $('#amountField').val(calculatedAmount);
                         $('#hiddenAmountField').val(calculatedAmount); 
                     }

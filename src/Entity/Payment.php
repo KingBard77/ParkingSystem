@@ -70,7 +70,8 @@ class Payment
     {
         dump('calculateAmount called');  // Debug line to check if the method is being called
         if ($this->parkingSpot !== null) {
-            $this->amount = $this->parkingSpot->getRate() * 30;
+            // $this->amount = $this->parkingSpot->getRate() * 30;
+            $this->amount = $this->parkingSpot->getRate();
         }
     }
 

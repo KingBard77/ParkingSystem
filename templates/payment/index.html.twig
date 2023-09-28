@@ -33,7 +33,7 @@
                         {% for payment in payments %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ payment.amount }}</td>
+                                <td>Rm {{ payment.amount }}</td>
                                 <td>{{ payment.paymentMethod }}</td>
                                 <td>{{ payment.paymentDate ? payment.paymentDate|date('Y-m-d H:i:s') : '' }}</td>
                                 {% if payment.status == 'Pending' %}
